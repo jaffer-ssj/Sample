@@ -3,9 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>error handling</title>
 </head>
 <body>
-    <h1>my new line code to develop myself</h1>
+    <input type="text" id="userInput" placeholder="Enter something...">
+<button onclick="validateInput()">Submit</button>
+
+<p id="error-message" style="color: red;"></p>
+
+
+    <script>
+        function validateInput() {
+  try {
+    const inputElement = document.getElementById("userInput");
+    const errorMessageElement = document.getElementById("error-message");
+    const inputValue = inputElement.value.trim(); // Get the value and remove whitespace
+
+    if (inputValue === "") {  // Check if input is empty
+      throw new Error("Input cannot be empty");  // Throw an error if input is empty
+    }
+
+    console.log("Valid input:", inputValue);  // Display valid input in console
+    errorMessageElement.textContent = "";  // Clear any previous error messages
+
+  } catch (error) {
+    console.error("Error:", error.message);  // Log error to the console
+    document.getElementById("error-message").textContent = error.message;  // Display error message on the page
+
+  } finally {
+    console.log("Validation completed.");  // This will always run
+  }
+}
+
+
+        </script>
 </body>
 </html>
